@@ -26,13 +26,13 @@ private:
 		// Initialize the window.
 		glfwInit();
 
-		// We don't want to create and openGL context.
+		// We don't want to create an openGL context.
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 		// Don't allow the window to be resizable.
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 		// Create the window with set width, height, and title and leave 
-		// monitor selection and openGL specfic paramter as nullptr.
+		// monitor selection and openGL specfic parameter as nullptr.
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
 	}
 
@@ -117,6 +117,9 @@ private:
 	}
 
 	void cleanup() {
+		// Destroy the Vulkan instance that we created.
+		vkDestroyInstance(instance, nullptr);
+
 		// Pair to glfwCreateWindow.
 		glfwDestroyWindow(window);
 
